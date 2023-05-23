@@ -18,11 +18,13 @@ class ListeEtablissement extends Component{
     }
 
     componentDidMount = () => {
+        // afficher par défaut les mairies 
         this.handleDisplayInstitution("mairie")
     }  
 
 
     handleDisplayInstitution = (etablissement)=>{
+        // le code choisit par l'utilisateur 
         let code=this.state.codeDepartement
         axios.get(`https://etablissements-publics.api.gouv.fr/v3/departements/${code}/${etablissement}`)
         .then(reponse => {
@@ -75,7 +77,7 @@ class ListeEtablissement extends Component{
                             Chargement ... 
                         </div>
                     }
-                    
+                    {/* Formulaire pour renseigner le code d'un département recherché */}
                     <form  className="form-inline" >
                         <div className="form-group">
                         <div className="row">
@@ -98,13 +100,19 @@ class ListeEtablissement extends Component{
                             </div>
                         </div>
                         </div>
-                    </form>                
+                    </form>         
+
+                    {/* Les boutons pour filtrer les établissements publics par type */}
                     <Bouton style = {(this.state.estSelect === "Mairie") ? {opacity:1} : {opacity:0.5}} clic = {()=>this.handleDisplayInstitution("mairie")}>Mairie</Bouton>
                     <Bouton style = {this.state.estSelect === "Commisariat de police" ? {opacity:1} : {opacity:0.5}} clic = {()=>this.handleDisplayInstitution("commissariat_police")}>Commisariat de police</Bouton>
                     <Bouton style = {this.state.estSelect === "Pôle Emploi" ? {opacity:1} : {opacity:0.5}} clic = {()=>this.handleDisplayInstitution("pole_emploi")}>Pôle emploi</Bouton>
                     <Bouton style = {this.state.estSelect === "Préfecture"  ? {opacity:1} : {opacity:0.5}} clic = {()=>this.handleDisplayInstitution("prefecture")}>Préfecture</Bouton>
                     <h2>Liste de {this.state.etablissement} du département {this.state.codeDepartement}</h2>
+
+                    {/* Afficher un message si le code n'existe pas dans l'API */}
                     { vide && <div className="alert alert-warning">{vide}</div> }
+                    
+                    {/* Afficher les informations de chaque établissments */}
                     <div className="row">
                         { this.state.listeEtablissment && this.state.listeEtablissment.map((etablissement, key)=>{
                             return (
