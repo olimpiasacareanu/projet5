@@ -14,7 +14,10 @@ const NavBar = (props) => (
             <div className="collapse navbar-collapse" id="navbarColor01">
                 <ul className="navbar-nav me-auto">
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/recherche-etablissment-public">Projet API etablissements public</NavLink>
+                        <NavLink className="nav-link" to="/projet">A propos du projet</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/recherche-etablissment-public">Etablissements publics</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/contact">Contact</NavLink>

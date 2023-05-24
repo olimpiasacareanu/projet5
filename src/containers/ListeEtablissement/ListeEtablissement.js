@@ -71,12 +71,15 @@ class ListeEtablissement extends Component{
             <>
                 <div className="container">
                     <Title>Rechercher un établissment</Title>
+
+                    {/* Chargement de la page */}
                     {this.state.loading && 
                         <div>
-                            <img src={Tortue} alt="chargement" />
+                            {/* <img src={Tortue} alt="chargement" /> */}
                             Chargement ... 
                         </div>
                     }
+
                     {/* Formulaire pour renseigner le code d'un département recherché */}
                     <form  className="form-inline" >
                         <div className="form-group">
@@ -111,7 +114,7 @@ class ListeEtablissement extends Component{
 
                     {/* Afficher un message si le code n'existe pas dans l'API */}
                     { vide && <div className="alert alert-warning">{vide}</div> }
-                    
+
                     {/* Afficher les informations de chaque établissments */}
                     <div className="row">
                         { this.state.listeEtablissment && this.state.listeEtablissment.map((etablissement, key)=>{
